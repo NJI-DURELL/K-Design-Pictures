@@ -2,47 +2,57 @@ import { useEffect, useRef } from 'react'
 
 /**
  * Reveals elements with the `.reveal` class as they enter the viewport.
- * Attach the returned ref to a container; every `.reveal` descendant animates
- * in once, with an optional stagger via `data-reveal-delay` (ms).
+ *
+ * Robust to content that mounts AFTER the hook runs (lazy/Suspense pages) and
+ * to route changes: it re-scans on every dependency change and watches the
+ * container with a MutationObserver, so late-arriving `.reveal` nodes are still
+ * observed. Without this, suspended page content can stay stuck at opacity 0.
+ *
+ * Pass the current pathname in `deps` so it re-initializes per page.
  */
-export function useReveal({ threshold = 0.16, once = true } = {}) {
+export function useReveal(deps = []) {
   const ref = useRef(null)
 
   useEffect(() => {
     const root = ref.current
     if (!root) return
 
-    const targets = root.matches?.('.reveal')
-      ? [root, ...root.querySelectorAll('.reveal')]
-      : [...root.querySelectorAll('.reveal')]
-
-    if (!targets.length) return
-
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced) {
-      targets.forEach((el) => el.classList.add('is-visible'))
-      return
-    }
 
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = entry.target.dataset.revealDelay
-            if (delay) entry.target.style.transitionDelay = `${delay}ms`
-            entry.target.classList.add('is-visible')
-            if (once) io.unobserve(entry.target)
-          } else if (!once) {
-            entry.target.classList.remove('is-visible')
-          }
+          if (!entry.isIntersecting) return
+          const delay = entry.target.dataset.revealDelay
+          if (delay) entry.target.style.transitionDelay = `${delay}ms`
+          entry.target.classList.add('is-visible')
+          io.unobserve(entry.target)
         })
       },
-      { threshold, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
     )
 
-    targets.forEach((el) => io.observe(el))
-    return () => io.disconnect()
-  }, [threshold, once])
+    // Observe every not-yet-handled .reveal element currently in the tree.
+    const scan = () => {
+      root.querySelectorAll('.reveal:not([data-revealed])').forEach((el) => {
+        el.setAttribute('data-revealed', '')
+        if (prefersReduced) el.classList.add('is-visible')
+        else io.observe(el)
+      })
+    }
+
+    scan()
+
+    // Catch content that mounts later (e.g. when a lazy page chunk resolves).
+    const mo = new MutationObserver(scan)
+    mo.observe(root, { childList: true, subtree: true })
+
+    return () => {
+      io.disconnect()
+      mo.disconnect()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
 
   return ref
 }

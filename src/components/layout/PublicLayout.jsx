@@ -8,7 +8,7 @@ import { useReveal } from '../../hooks/useReveal'
 
 export default function PublicLayout() {
   const location = useLocation()
-  const revealRef = useReveal()
+  const revealRef = useReveal([location.pathname])
 
   // Scroll to top on route change.
   useEffect(() => {
