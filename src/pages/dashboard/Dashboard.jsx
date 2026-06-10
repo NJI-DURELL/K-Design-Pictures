@@ -18,7 +18,7 @@ export default function Dashboard() {
   return (
     <>
       <Helmet>
-        <title>Dashboard — K-Design Pictures</title>
+        <title>Dashboard | K-Design Pictures</title>
         <meta name="robots" content="noindex" />
       </Helmet>
       <Routes>

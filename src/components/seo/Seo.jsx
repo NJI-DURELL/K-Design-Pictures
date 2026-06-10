@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
-const SITE = 'https://kdesignpictures.com'
+const SITE = 'https://k-design-six.vercel.app'
 const DEFAULT_OG = `${SITE}/og-image.png`
 
 /**
@@ -15,8 +15,8 @@ export default function Seo({
   noindex = false,
 }) {
   const fullTitle = title
-    ? `${title} — K-Design Pictures`
-    : 'K-Design Pictures SARL — Cinematic Audiovisual Production in Yaoundé'
+    ? `${title} | K-Design Pictures`
+    : 'K-Design Pictures SARL | Cinematic Audiovisual Production in Yaoundé'
   const url = `${SITE}${path}`
 
   return (

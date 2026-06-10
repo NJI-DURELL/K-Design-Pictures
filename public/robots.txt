@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /dashboard
 
-Sitemap: https://kdesignpictures.com/sitemap.xml
+Sitemap: https://k-design-six.vercel.app/sitemap.xml

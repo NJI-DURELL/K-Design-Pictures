@@ -80,7 +80,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-4 text-sm text-mist-400">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-gold-500" />
-                <span>Soa, Yaoundé — Centre, Cameroon</span>
+                <span>Soa, Yaoundé, Centre, Cameroon</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={16} className="mt-0.5 shrink-0 text-gold-500" />

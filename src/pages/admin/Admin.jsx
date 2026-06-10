@@ -35,7 +35,7 @@ export default function Admin() {
   return (
     <>
       <Helmet>
-        <title>Admin Console — K-Design Pictures</title>
+        <title>Admin Console | K-Design Pictures</title>
         <meta name="robots" content="noindex" />
       </Helmet>
       <Routes>

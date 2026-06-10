@@ -32,9 +32,13 @@ for (const job of jobs) {
   console.log(`  generated ${job.file} (${job.size}x${job.size})`)
 }
 
-// Social share image (PNG for WhatsApp / Facebook / LinkedIn / X)
-const ogPng = await sharp(og, { density: 144 }).resize(1200, 630).png().toBuffer()
+// Social share image (PNG for WhatsApp / Facebook / LinkedIn / X).
+// Palette-quantized + max compression to stay under WhatsApp's ~300KB cap.
+const ogPng = await sharp(og, { density: 144 })
+  .resize(1200, 630)
+  .png({ palette: true, quality: 90, effort: 10, compressionLevel: 9 })
+  .toBuffer()
 await writeFile(out('og-image.png'), ogPng)
-console.log('  generated og-image.png (1200x630)')
+console.log(`  generated og-image.png (1200x630, ${(ogPng.length / 1024).toFixed(0)} KB)`)
 
 console.log('Brand assets generated.')
