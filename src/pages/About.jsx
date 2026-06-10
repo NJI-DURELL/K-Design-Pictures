@@ -55,6 +55,8 @@ export default function About() {
             <Poster
               src="/media/dr-ndoumbe.webp"
               alt="Dr Ndoumbe, founder and director of K-Design Pictures"
+              sizes="(max-width: 1024px) 92vw, 40vw"
+              priority
               className="aspect-[4/5] w-full overflow-hidden rounded-[2rem]"
             />
           </div>

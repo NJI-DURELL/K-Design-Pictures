@@ -36,18 +36,27 @@ const MAP = {
 
 await mkdir(OUT, { recursive: true })
 
+// Two widths per image so mobile downloads a small file: a 640px variant
+// (name-640.webp) and a 1200px master (name.webp). Poster picks via srcset.
+const SIZES = [
+  { suffix: '-640', width: 640, quality: 68 },
+  { suffix: '', width: 1200, quality: 74 },
+]
+
 for (const [num, name] of Object.entries(MAP)) {
   try {
     const buf = await readFile(resolve(SRC, `${num}.png`))
-    const webp = await sharp(buf)
-      .resize({ width: 1600, withoutEnlargement: true })
-      .webp({ quality: 80 })
-      .toBuffer()
-    await writeFile(resolve(OUT, `${name}.webp`), webp)
-    console.log(`  ${num}.png -> media/${name}.webp`)
+    for (const s of SIZES) {
+      const webp = await sharp(buf)
+        .resize({ width: s.width, withoutEnlargement: true })
+        .webp({ quality: s.quality, effort: 6 })
+        .toBuffer()
+      await writeFile(resolve(OUT, `${name}${s.suffix}.webp`), webp)
+    }
+    console.log(`  ${num}.png -> media/${name}.webp (+ -640)`)
   } catch (err) {
     console.warn(`  skipped ${num}.png (${err.message})`)
   }
 }
 
-console.log('Photos optimized into public/media.')
+console.log('Photos optimized into public/media (640 + 1200 variants).')
