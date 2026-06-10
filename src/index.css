@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-ink-900 text-mist-200 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-white;
+    font-feature-settings: 'ss01' on, 'liga' on;
+  }
+
+  ::selection {
+    background: rgba(212, 175, 55, 0.85);
+    color: #0a0a0a;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #26262b;
+    border-radius: 999px;
+    border: 2px solid #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8f7220;
+  }
+
+  :focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Page shell */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Eyebrow / kicker label */
+  .kicker {
+    @apply inline-flex items-center gap-3 text-2xs font-medium uppercase tracking-brand text-gold-500;
+  }
+  .kicker::before {
+    content: '';
+    @apply h-px w-8 bg-gold-600;
+  }
+
+  /* Gold gradient text */
+  .text-gold-sheen {
+    background: linear-gradient(135deg, #f4e9c1 0%, #d4af37 45%, #8f7220 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Glass surface for cards & dashboard */
+  .glass {
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.015) 100%
+    );
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-gold {
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* Hairline divider */
+  .hairline {
+    @apply h-px w-full border-0 bg-white/[0.07];
+  }
+
+  /* Primary button */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5
+      text-sm font-medium tracking-wide transition-all duration-500 ease-cinema
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-gold-500 text-ink-900 hover:bg-gold-400
+      hover:shadow-gold-glow hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply btn border border-white/15 text-white hover:border-gold-500/60
+      hover:bg-white/[0.03] hover:-translate-y-0.5;
+  }
+  .btn-dark {
+    @apply btn bg-ink-700 text-white hover:bg-ink-600;
+  }
+
+  /* Field */
+  .field {
+    @apply w-full rounded-xl border border-white/10 bg-ink-850/80 px-4 py-3.5
+      text-sm text-white placeholder:text-mist-600 transition-colors duration-300
+      focus:border-gold-500/70 focus:bg-ink-800 focus:outline-none;
+  }
+  .field-label {
+    @apply mb-2 block text-xs font-medium uppercase tracking-wide text-mist-500;
+  }
+
+  /* Link underline reveal */
+  .link-reveal {
+    @apply relative text-mist-300 transition-colors duration-300 hover:text-white;
+  }
+  .link-reveal::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-px w-0 bg-gold-500 transition-all duration-500 ease-cinema;
+  }
+  .link-reveal:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .grain-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--tw-bg-grain);
+    opacity: 0.035;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  /* Reveal helpers driven by GSAP / IntersectionObserver */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
