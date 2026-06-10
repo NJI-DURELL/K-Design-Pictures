@@ -2,7 +2,7 @@ import { initials as toInitials, seedHue } from '../../lib/utils'
 
 /**
  * Initials avatar — no stock profile icons anywhere in the product.
- * Durell Njie -> DN, on a deterministic dark/gold gradient seeded by name.
+ * Jane Doe -> JD, on a deterministic dark/gold gradient seeded by name.
  */
 export default function Avatar({ name = '', src = null, size = 40, className = '' }) {
   const text = toInitials(name)

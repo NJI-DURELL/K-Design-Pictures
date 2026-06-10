@@ -32,8 +32,8 @@ export default function Portfolio() {
       />
       <PageHero
         kicker="Selected work"
-        title="A portfolio built on real stories"
-        intro="Filter by what you came to see, or search for a project, client, or category."
+        title="The work"
+        intro="Filter, search, explore."
       />
 
       {/* Controls */}

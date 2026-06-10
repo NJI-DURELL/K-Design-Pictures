@@ -3,7 +3,7 @@ export function cn(...parts) {
   return parts.filter(Boolean).join(' ')
 }
 
-/** Durell Njie -> DN, John Smith -> JS, single name -> first two letters. */
+/** Jane Doe -> JD, John Smith -> JS, single name -> first two letters. */
 export function initials(name = '') {
   const clean = name.trim()
   if (!clean) return 'KD'

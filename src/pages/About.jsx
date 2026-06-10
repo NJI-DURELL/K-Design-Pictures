@@ -27,7 +27,7 @@ export default function About() {
       <PageHero
         kicker="About the studio"
         title="A creative studio that treats every story like it matters"
-        intro="We are a small team of directors, producers, and editors in Yaoundé who care more about the work than the noise around it."
+        intro="Directors, producers, and editors based in Yaoundé."
       />
 
       {/* Mission / Vision */}
@@ -48,43 +48,26 @@ export default function About() {
         </div>
       </section>
 
-      {/* Story */}
+      {/* Director */}
       <section className="shell py-20">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1fr]">
           <div className="reveal">
-            <span className="kicker">How we started</span>
-            <h2 className="mt-5 text-fluid-title font-semibold text-white text-balance">
-              From cover art to a full production studio
-            </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-mist-400">
-              <p>
-                K-Design Pictures grew out of design and music. The early work was album covers,
-                mixtape art, and motion graphics for artists who needed their sound to look as good
-                as it felt. That design eye still runs through everything we touch.
-              </p>
-              <p>
-                From there we picked up the camera, then the drone, then the lights, and learned the
-                lesson the whole studio is built on. You cannot fake a real moment, and you cannot
-                rush real trust. A wedding film and a music video get the same honesty.
-              </p>
-              <p>
-                Today we are a full team with the range to handle a brand campaign and the care to
-                handle a family memory. Both get our best.
-              </p>
-            </div>
+            <Poster
+              src="/media/dr-ndoumbe.webp"
+              alt="Dr Ndoumbe, founder and director of K-Design Pictures"
+              className="aspect-[4/5] w-full overflow-hidden rounded-[2rem]"
+            />
+          </div>
+          <div className="reveal" data-reveal-delay="100">
+            <span className="kicker">The director</span>
+            <h2 className="mt-5 text-fluid-title font-semibold text-white">Dr Ndoumbe</h2>
+            <p className="mt-2 text-gold-400">Founder, Director & Motion Designer</p>
+            <p className="mt-6 max-w-md text-base leading-relaxed text-mist-400">
+              Directs the films and designs the motion. The eye behind the studio.
+            </p>
             <p className="mt-8 border-l-2 border-gold-500/50 pl-5 font-display text-lg italic text-mist-200">
               Une approche qualitative de vos productions.
             </p>
-          </div>
-          <div className="reveal grid grid-cols-2 gap-4" data-reveal-delay="120">
-            <div className="space-y-4">
-              <Poster src="/media/dr-ndoumbe.webp" seed="about-a" alt="Dr Ndoumbe, founder and director" className="aspect-[3/4] overflow-hidden rounded-3xl" />
-              <Poster src="/media/family-street.webp" seed="about-b" alt="Family Street brand design" className="aspect-square overflow-hidden rounded-3xl" />
-            </div>
-            <div className="space-y-4 pt-10">
-              <Poster src="/media/studio-set.webp" seed="about-c" alt="K-Design studio set" className="aspect-square overflow-hidden rounded-3xl" />
-              <Poster src="/media/kate-4life.webp" seed="about-d" alt="Kate album artwork" className="aspect-[3/4] overflow-hidden rounded-3xl" />
-            </div>
           </div>
         </div>
       </section>

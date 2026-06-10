@@ -33,7 +33,7 @@ export default function Home() {
     return () => ctx.revert()
   }, [])
 
-  const featured = PROJECTS.filter((p) => p.featured)
+  const featured = PROJECTS.slice(0, 6)
 
   return (
     <>
@@ -73,9 +73,8 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="hero-sub mt-8 max-w-xl text-lg leading-relaxed text-mist-300">
-            A film studio built on patience, craft, and respect for the people in front of the lens.
-            We make work that earns attention and holds it.
+          <p className="hero-sub mt-8 max-w-md text-lg leading-relaxed text-mist-300">
+            Films and visuals that earn attention and hold it.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -123,11 +122,7 @@ export default function Home() {
       {/* ========================== SERVICES ========================= */}
       <section className="shell py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            kicker="What we do"
-            title="Full-service production, end to end"
-            intro="From the first idea to the final grade, one team carries your project the whole way."
-          />
+          <SectionHeading kicker="What we do" title="Full-service production" />
           <Link to="/services" className="link-reveal hidden text-sm font-medium text-gold-400 sm:block">
             All services
           </Link>
@@ -143,22 +138,25 @@ export default function Home() {
       {/* ====================== FEATURED PROJECTS ==================== */}
       <section className="shell py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            kicker="Selected work"
-            title="Films people remember"
-            intro="A few recent projects that show how we think and what we deliver."
-          />
+          <SectionHeading kicker="Selected work" title="Recent work" />
           <Link to="/portfolio" className="link-reveal hidden text-sm font-medium text-gold-400 sm:block">
             View full portfolio
           </Link>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((p, i) => (
-            <div key={p.slug} className="reveal" data-reveal-delay={i * 90}>
+            <div key={p.slug} className="reveal" data-reveal-delay={(i % 3) * 90}>
               <ProjectCard project={p} />
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 text-center sm:hidden">
+          <Link to="/portfolio" className="btn-ghost">
+            View full portfolio
+            <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
@@ -166,24 +164,15 @@ export default function Home() {
       <section className="shell py-28">
         <div className="grid items-center gap-14 lg:grid-cols-2">
           <div className="reveal">
-            <span className="kicker">Our story</span>
+            <span className="kicker">The studio</span>
             <h2 className="mt-5 text-fluid-title font-semibold text-white text-balance">
-              Nine years of learning to wait for the moment
+              Crafting since 2015, from cover art to cinema
             </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-mist-400">
-              <p>
-                K-Design Pictures started with one camera and a refusal to make work that looks like
-                everyone else. We grew up shooting documentaries, where you cannot fake a moment and
-                you cannot rush trust.
-              </p>
-              <p>
-                That patience now shapes everything we touch, whether it is a national bank brand
-                film or a wedding that two families will watch for the rest of their lives. We treat
-                every project like it matters, because to someone, it always does.
-              </p>
-            </div>
+            <p className="mt-6 text-base leading-relaxed text-mist-400">
+              Music videos, weddings, brands, and the work in between.
+            </p>
             <Link to="/about" className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-gold-400 hover:text-gold-300">
-              Read our full story
+              About the studio
               <ArrowRight size={16} />
             </Link>
           </div>
@@ -229,12 +218,8 @@ export default function Home() {
           <div className="relative">
             <span className="kicker justify-center">Let us make something</span>
             <h2 className="mx-auto mt-6 max-w-3xl text-fluid-display font-semibold text-white text-balance">
-              Tell us the story. We will find the way to tell it.
+              Have a project in mind?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-mist-400">
-              Whether you have a full brief or a rough idea, the first conversation is free and
-              always worth it.
-            </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="btn-primary">
                 Start a project

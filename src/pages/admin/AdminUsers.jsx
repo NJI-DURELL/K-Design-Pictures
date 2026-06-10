@@ -5,7 +5,7 @@ import { cn, formatDate } from '../../lib/utils'
 import { supabase, isSupabaseReady } from '../../lib/supabase'
 
 const DEMO_USERS = [
-  { id: '1', full_name: 'Durell Njie', email: 'durell@email.com', role: 'admin', created_at: '2024-09-02' },
+  { id: '1', full_name: 'Dr Ndoumbe', email: 'dr.ndoumbe@gmail.com', role: 'admin', created_at: '2024-09-02' },
   { id: '2', full_name: 'Aline Foudjet', email: 'aline@horizonbank.cm', role: 'user', created_at: '2025-01-14' },
   { id: '3', full_name: 'Patrick Mbarga', email: 'patrick@atlascoffee.cm', role: 'user', created_at: '2025-02-20' },
   { id: '4', full_name: 'Clarisse Eyenga', email: 'clarisse@sahelsounds.com', role: 'user', created_at: '2025-03-11' },

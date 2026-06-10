@@ -67,7 +67,7 @@ export default function Register() {
           <form onSubmit={handleSubmit} className="space-y-5">
             <label className="block">
               <span className="field-label">Full name</span>
-              <input required value={form.fullName} onChange={update('fullName')} className="field" placeholder="Durell Njie" />
+              <input required value={form.fullName} onChange={update('fullName')} className="field" placeholder="Your name" />
             </label>
             <label className="block">
               <span className="field-label">Email</span>

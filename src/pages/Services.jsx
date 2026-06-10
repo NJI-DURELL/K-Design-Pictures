@@ -23,7 +23,7 @@ export default function Services() {
       <PageHero
         kicker="Services"
         title="Everything you need to make something worth watching"
-        intro="Eight ways we help brands, artists, and people tell their story on screen. One team carries it from idea to final file."
+        intro="One team, from idea to final file."
       />
 
       {/* Service detail list */}
@@ -45,7 +45,7 @@ export default function Services() {
               <div>
                 <h3 className="font-display text-2xl font-semibold text-white">{s.title}</h3>
                 <p className="mt-2 max-w-2xl text-base leading-relaxed text-mist-400">
-                  {s.description}
+                  {s.summary}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
                   {s.features.map((f) => (
@@ -71,12 +71,7 @@ export default function Services() {
 
       {/* Process */}
       <section className="shell py-24">
-        <SectionHeading
-          align="center"
-          kicker="How we work"
-          title="A simple process, run with discipline"
-          intro="No mystery, no chaos. Four clear stages, and you know where things stand at every one."
-        />
+        <SectionHeading align="center" kicker="How we work" title="A simple process" />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PROCESS.map((p, i) => (
             <div key={p.title} className="relative rounded-3xl glass p-7 reveal" data-reveal-delay={i * 80}>

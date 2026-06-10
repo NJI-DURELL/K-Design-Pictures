@@ -316,25 +316,25 @@ export const TEAM = [
     name: 'Dr Ndoumbe',
     role: 'Founder, Director & Motion Designer',
     photo: '/media/dr-ndoumbe.webp',
-    bio: 'The eye and the engine behind K-Design Pictures. Directs the films and designs the motion, with a habit of saying yes to the hard shoots and finding the angle no one else saw.',
+    bio: 'Directs the films and designs the motion. The eye behind the studio.',
   },
   {
     name: 'Production Team',
     role: 'Producers & Coordinators',
     photo: null,
-    bio: 'The people who keep every shoot on time and on budget without anyone feeling rushed. The reason clients sleep at night.',
+    bio: 'Keeps every shoot on time and on budget.',
   },
   {
     name: 'Camera & Aerial',
     role: 'Cinematographers & Drone Pilots',
     photo: null,
-    bio: 'On the ground and in the air. They light a room with intention and fly the drone like a second director of photography.',
+    bio: 'On the ground and in the air, lighting and flying every shot.',
   },
   {
     name: 'Post & Design',
     role: 'Editors, Colorists & Designers',
     photo: null,
-    bio: 'Where the footage becomes a film and the idea becomes a cover. They cut for feeling first, then finish it so it looks like money.',
+    bio: 'Where footage becomes film and ideas become covers.',
   },
 ]
 

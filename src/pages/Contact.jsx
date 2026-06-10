@@ -6,7 +6,7 @@ import { CONTACT } from '../data/site'
 import { SERVICES } from '../data/content'
 import { supabase } from '../lib/supabase'
 
-const BUDGETS = ['Under 500k FCFA', '500k – 1.5M FCFA', '1.5M – 5M FCFA', '5M+ FCFA', 'Not sure yet']
+const BUDGETS = ['Under 500k FCFA', '500k to 1.5M FCFA', '1.5M to 5M FCFA', '5M+ FCFA', 'Not sure yet']
 
 export default function Contact() {
   const [form, setForm] = useState({
