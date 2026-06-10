@@ -37,15 +37,16 @@ export default function Portfolio() {
       />
 
       {/* Controls */}
-      <section className="shell sticky top-20 z-30 py-6">
-        <div className="flex flex-col gap-4 rounded-full glass px-4 py-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap items-center gap-1.5">
+      <section className="shell sticky top-20 z-30 py-4">
+        <div className="rounded-3xl glass p-3 lg:flex lg:items-center lg:justify-between lg:gap-4 lg:rounded-full lg:px-4 lg:py-3">
+          {/* Categories: swipeable row on mobile, wraps on desktop */}
+          <div className="no-scrollbar -mx-1 flex items-center gap-1.5 overflow-x-auto px-1 lg:flex-wrap lg:overflow-visible lg:px-0">
             {CATEGORIES.map((c) => (
               <button
                 key={c}
                 onClick={() => setActive(c)}
                 className={cn(
-                  'rounded-full px-4 py-2 text-sm transition-all duration-300',
+                  'shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm transition-all duration-300',
                   active === c
                     ? 'bg-gold-500 text-ink-900'
                     : 'text-mist-400 hover:bg-white/[0.05] hover:text-white'
@@ -56,7 +57,7 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <div className="relative lg:w-72">
+          <div className="relative mt-3 lg:mt-0 lg:w-72 lg:shrink-0">
             <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-mist-600" />
             <input
               value={query}
